@@ -1,0 +1,13 @@
+#!/bin/sh
+
+which osascript 2>&1>/dev/null
+if ! [ "$?" = "0" ]; then
+    echo "Error: no 'osascript' found. This is probably not the right system to run this server script on! This was built on/for Mac OS. The client runs everywhere, though. :)"
+    exit 1
+fi
+
+tmux new-session -d 'echo "Current track server: "; while true; do osascript ./osa/current.applescript | nc -l 21337; date; done'
+tmux split-window -h 'echo "Skip server: "; while true; do osascript ./osa/skip.applescript | nc -l 21338; date; done'
+tmux split-window -h 'echo "Previous server: "; while true; do osascript ./osa/prev.applescript | nc -l 21339; date; done'
+echo "Parent tmux launched"
+exit 0

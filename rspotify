@@ -1,0 +1,83 @@
+#!/bin/sh
+
+if [ -f ~/.rspotifyrc ]; then
+    # needs vars: REMOTE and BASEPORT
+    source ~/.rspotifyrc
+else
+    if ! [ "$1" = "" ]; then
+	REMOTE="$1"
+    else
+	echo "Usage: $0 [IP] [BASEPORT]"
+	exit 1
+    fi
+
+    if ! [ "$2" = "" ]; then
+	BASEPORT="$2"
+    else
+	echo "Usage: $0 [IP] [BASEPORT]"
+	exit 1
+    fi
+
+    read -p "[!] Recommendation: let me save given IP and Port to ~/.rspotifyrc so you can call $0 without any hassle in the future? [y/n] " -n 1 -r
+    echo ""
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+	echo "REMOTE=\"$REMOTE\"" > ~/.rspotifyrc
+	echo "BASEPORT=\"$BASEPORT\"" >> ~/.rspotifyrc
+	echo "[!] Done! Saved '$REMOTE' and '$BASEPORT' to ~/.rspotifyrc. You can still override those settings by giving arguments explicitly."
+    fi
+fi
+
+CPORT=$BASEPORT
+NPORT=$((BASEPORT+1))
+PPORT=$((BASEPORT+2))
+
+function usage {
+    echo " Usage:   c = current track // n = next track // p = previous track"
+    echo "          s = save to a textfile in your home // h = this help"
+    echo " --"
+}
+
+usage
+LASTHELP=1
+
+while IFS= read -s -r -n1 char; do
+    # next song
+    if [ "$char" = "n" ]; then
+	nc $REMOTE $NPORT
+	LASTHELP=0
+	continue
+    fi
+
+    # previous song or skip to beginning
+    if [ "$char" = "p" ]; then
+	nc $REMOTE $PPORT
+	LASTHELP=0
+	continue
+    fi
+
+    # get current song and/or save to home
+    if [ "$char" = "c" -o "$char" = "s" ]; then
+	# discard first one as refresh
+	nc $REMOTE $CPORT > /dev/null
+	sleep 0.5
+	if [ "$char" = "s" ]; then
+	    nc $REMOTE $CPORT | tee -a ~/spotify_liked.txt | tr -d '\n'
+	    echo " \033[7;30;42m[Saved]\033[0m"
+	    cat ~/spotify_liked.txt | sort | uniq > /tmp/.spotify_liked.txt
+	    mv /tmp/.spotify_liked.txt ~/spotify_liked.txt
+	else
+	    nc $REMOTE $CPORT
+	fi
+	LASTHELP=0
+	continue
+    fi
+
+    if [ "$LASTHELP" = "0" ]; then
+	echo "\033[7;30;31mWhat do you want, man?\033[0m"
+	usage
+	LASTHELP=1
+    fi
+done
+
+exit 0
