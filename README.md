@@ -12,6 +12,8 @@ It doesn't use mutch of a protocol, except maybe TCP if you count that. Binary o
 
 The only real data returned is the current track, artist and album. It's formating is left to the server.
 
+This was written for Hackathons and get-togethers where 1< *nix affine people want to influence the current (Spotify) playlist connected to the big speakers.
+
 ## Installation
 Actually there isn't much installation required.
 
