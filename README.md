@@ -5,6 +5,8 @@ The shell script `rspotify` basically uses netcat to communicate with a remote h
 
 Some may call this a dirty hack. I kept the client clean and compliant though (as far as you can say that with the netcat stuff, lol).
 
+![In Action](http://unimplemented.org/~valentin/rspotify.png)
+
 ## Functionality
 It doesn't use mutch of a protocol, except maybe TCP if you count that. Binary operations like skipping a track are done in a *binary* fashion, i.e. connecting to the respective TCP port skips to the next song.
 
@@ -31,4 +33,4 @@ To [younix](http://github.com/younix/) for the idea, to Conceited Software for p
 
 My actual [home is inside this gitweb](http://unimplemented.org/gitweb/), but please feel free to send any pull requests here. They're very welcome and will be noticed.
 
-This is free software, do whatever the hell you want to do with it.
+This is free software, do whatever the hell you want to do with it. If you need help see my profile, you'll figure out how to reach me. :)
