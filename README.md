@@ -5,6 +5,8 @@ The shell script `rspotify` basically uses netcat to communicate with a remote h
 
 Some may call this a dirty hack. I kept the client clean and compliant though (as far as you can say that with the netcat stuff, lol).
 
+![In Action](http://unimplemented.org/~valentin/rspotify.png)
+
 ## Functionality
 It doesn't use mutch of a protocol, except maybe TCP if you count that. Binary operations like skipping a track are done in a *binary* fashion, i.e. connecting to the respective TCP port skips to the next song.
 
@@ -27,8 +29,8 @@ You will be asked if you want to save the two parameters so you can just use `rs
 ... well, it's a little less *free* here. Until now, this repository only contains a Mac OS version. If you have a somewhat recent version of Mac OS X and Spotify installted, just navigate to the `server/` directory  and execute `./rspotify_server`. Oh, and you need to have `tmux` installed for this "hacky" version of a "server". [Get it from Brew](http://mxcl.github.com/homebrew/), for example: `brew install tmux`
 
 ## Props
-To @younix for the idea, to Conceited Software for providing parts of the *Apple-Script-Spotify-Interface* and my unbeatable commitment to procrastination.
+To [younix](http://github.com/younix/) for the idea, to Conceited Software for providing parts of the *Apple-Script-Spotify-Interface* and to my unbeatable commitment to procrastination.
 
 My actual [home is inside this gitweb](http://unimplemented.org/gitweb/), but please feel free to send any pull requests here. They're very welcome and will be noticed.
 
-This is free software, do whatever the hell you want to do with it.
+This is free software, do whatever the hell you want to do with it. If you need help see my profile, you'll figure out how to reach me. :)
