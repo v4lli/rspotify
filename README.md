@@ -30,3 +30,5 @@ You will be asked if you want to save the two parameters so you can just use `rs
 To @younix for the idea, to Conceited Software for providing parts of the *Apple-Script-Spotify-Interface* and my unbeatable commitment to procrastination.
 
 My actual [home is inside this gitweb](http://unimplemented.org/gitweb/), but please feel free to send any pull requests here. They're very welcome and will be noticed.
+
+This is free software, do whatever the hell you want to do with it.
