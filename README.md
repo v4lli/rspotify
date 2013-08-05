@@ -8,7 +8,7 @@ Some may call this a dirty hack. I kept the client clean and compliant though (a
 ![In Action](http://unimplemented.org/~valentin/rspotify.png)
 
 ## Functionality
-It doesn't use mutch of a protocol, except maybe TCP if you count that. Binary operations like skipping a track are done in a *binary* fashion, i.e. connecting to the respective TCP port skips to the next song.
+It doesn't use much of a protocol, except maybe TCP if you count that. Binary operations like skipping a track are done in a *binary* fashion, i.e. connecting to the respective TCP port skips to the next song.
 
 The only real data returned is the current track, artist and album. It's formating is left to the server.
 
